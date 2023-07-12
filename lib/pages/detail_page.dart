@@ -1,12 +1,42 @@
+import 'package:fai_books/controller/BookController.dart';
+import 'package:fai_books/model/bookdetails.dart';
+import 'package:fai_books/model/books.dart';
 import 'package:fai_books/pages/favorite_page.dart';
 import 'package:fai_books/pages/home_page.dart';
 import 'package:fai_books/pages/read_later_page.dart';
 import 'package:flutter/material.dart';
 
-class DetailPage extends StatelessWidget {
-  const DetailPage({super.key});
+class DetailPage extends StatefulWidget {
+  DetailPage({super.key, required this.id});
+  final String id;
 
   @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  final bookController = BookController();
+
+  BookDetails? book;
+
+  @override
+  // void initState() {
+  //   super.initState();
+  //   fetchBook(widget.id);
+  // }
+
+  Future<BookDetails> fetchBook(String id) async {
+    try {
+      BookDetails bookfetch = await bookController.bookDetail(id);
+      // setState() {
+      //   book = bookfetch;
+      // }
+      return bookfetch;
+    } catch (e) {
+      throw Exception("Error fetching data: $e");
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -56,21 +86,71 @@ class DetailPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.grey[400],
-        ),
-        child: Column(
-          children: [
-            Text("Judul"),
-            Text(
-                "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem "),
-          ],
-        ),
+      body: FutureBuilder<BookDetails>(
+        future: fetchBook(widget.id),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child:
+                  CircularProgressIndicator(), // Tampilkan indikator loading saat future sedang diload
+            );
+          } else if (snapshot.hasError) {
+            return Text('Error loading data: ${snapshot.error}');
+          } else {
+            final book = snapshot.data;
+            if (book != null) {
+              return Container(
+                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[400],
+                ),
+                child: ListView(
+                  children: [
+                    Text(
+                      "${book.name}",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "${book.synopsis}",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 25,
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              return Text('Book not found');
+            }
+          }
+        },
       ),
+      // book != null
+      //     ? Container(
+      //         margin: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+      //         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+      //         decoration: BoxDecoration(
+      //           borderRadius: BorderRadius.circular(10),
+      //           color: Colors.grey[400],
+      //         ),
+      //         child: Column(
+      //           children: [
+      //             Text("${book!.name}"),
+      //             Container(
+      //               child: Image.network(
+      //                 '${book!.cover}', // Ganti dengan URL gambar Anda
+      //                 fit: BoxFit.cover,
+      //               ),
+      //             ),
+      //             Text("${book!.synopsis}"),
+      //           ],
+      //         ),
+      //       )
+      //     : Container(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(

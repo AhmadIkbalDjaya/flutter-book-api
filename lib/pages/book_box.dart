@@ -1,10 +1,10 @@
+import 'package:fai_books/model/books.dart';
 import 'package:fai_books/pages/detail_page.dart';
 import 'package:flutter/material.dart';
 
 class BookBox extends StatelessWidget {
-  const BookBox({
-    super.key,
-  });
+  const BookBox({super.key, required this.book});
+  final Books book;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class BookBox extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DetailPage(),
+            builder: (context) => DetailPage(id: book.bookId.toString()),
           ),
         );
       },
@@ -41,17 +41,21 @@ class BookBox extends StatelessWidget {
                 color: Colors.grey[900],
                 borderRadius: BorderRadius.circular(15),
               ),
+              child: Image.network(
+                '${book.cover}', // Ganti dengan URL gambar Anda
+                fit: BoxFit.cover,
+              ),
             ),
             SizedBox(width: 50),
             Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Judul"),
+                  Text("${book.name}"),
                   SizedBox(height: 15),
-                  Text("Penulis"),
+                  Text("${book.authors}"),
                   SizedBox(height: 15),
-                  Text("Tahun Terbit"),
+                  Text("${book.year}"),
                 ],
               ),
             )

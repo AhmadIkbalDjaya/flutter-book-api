@@ -59,9 +59,9 @@ class FavoritePage extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) => BookBox(),
-      ),
+      // body: ListView.builder(
+      //   itemBuilder: (context, index) => BookBox(),
+      // ),
     );
   }
 }

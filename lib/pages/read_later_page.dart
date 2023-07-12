@@ -1,7 +1,6 @@
 import 'package:fai_books/pages/book_box.dart';
 import 'package:fai_books/pages/favorite_page.dart';
 import 'package:fai_books/pages/home_page.dart';
-import 'package:fai_books/pages/read_later_page.dart';
 import 'package:flutter/material.dart';
 
 class ReadLaterPage extends StatelessWidget {
@@ -60,9 +59,9 @@ class ReadLaterPage extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) => BookBox(),
-      ),
+      // body: ListView.builder(
+      //   itemBuilder: (context, index) => BookBox(),
+      // ),
     );
   }
 }
