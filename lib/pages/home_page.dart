@@ -100,7 +100,16 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      searchBooks(searchController.text);
+                      if (searchController.text == '') {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text("Search Wajib di Isi"),
+                          ),
+                        );
+                      } else {
+                        searchBooks(searchController.text);
+                      }
                     },
                     icon: Icon(Icons.search),
                   ),

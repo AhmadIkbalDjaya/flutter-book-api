@@ -20,17 +20,9 @@ class _DetailPageState extends State<DetailPage> {
   BookDetails? book;
 
   @override
-  // void initState() {
-  //   super.initState();
-  //   fetchBook(widget.id);
-  // }
-
   Future<BookDetails> fetchBook(String id) async {
     try {
       BookDetails bookfetch = await bookController.bookDetail(id);
-      // setState() {
-      //   book = bookfetch;
-      // }
       return bookfetch;
     } catch (e) {
       throw Exception("Error fetching data: $e");
@@ -129,41 +121,19 @@ class _DetailPageState extends State<DetailPage> {
           }
         },
       ),
-      // book != null
-      //     ? Container(
-      //         margin: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
-      //         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-      //         decoration: BoxDecoration(
-      //           borderRadius: BorderRadius.circular(10),
-      //           color: Colors.grey[400],
-      //         ),
-      //         child: Column(
-      //           children: [
-      //             Text("${book!.name}"),
-      //             Container(
-      //               child: Image.network(
-      //                 '${book!.cover}', // Ganti dengan URL gambar Anda
-      //                 fit: BoxFit.cover,
-      //               ),
-      //             ),
-      //             Text("${book!.synopsis}"),
-      //           ],
-      //         ),
-      //       )
-      //     : Container(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text("Berhasil Di tambahkan"),
-              );
-            },
-          );
-        },
-        child: Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     showDialog(
+      //       context: context,
+      //       builder: (context) {
+      //         return AlertDialog(
+      //           title: Text("Berhasil Di tambahkan"),
+      //         );
+      //       },
+      //     );
+      //   },
+      //   child: Icon(Icons.add),
+      // ),
     );
   }
 }
