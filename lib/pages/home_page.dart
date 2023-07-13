@@ -137,12 +137,31 @@ class _HomePageState extends State<HomePage> {
                         try {
                           var result = await DBHelper.insertBook(book);
                           if (result) {
+                            // return showDialog(
+                            //   context: context,
+                            //   builder: (context) => AlertDialog(
+                            //     title: Text("Succes add to Favorite"),
+                            //   ),
                             return showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: Text("success"),
-                              ),
-                            );
+                                context: context,
+                                builder: (context) => Dialog(
+                                      backgroundColor: Colors.transparent,
+                                      child: Container(
+                                        width: 200,
+                                        height: 150,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white.withOpacity(.8),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "Succes add to Favorite",
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                        ),
+                                      ),
+                                    ));
                           }
                         } catch (e) {
                           return showDialog(

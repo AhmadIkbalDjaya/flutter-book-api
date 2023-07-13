@@ -10,15 +10,15 @@ class BookController {
   Future<List<Books>> searchBook(String query) async {
     var url = Uri.parse("${link}/search/${query}");
     // aid
-    var response = await http.get(url, headers: {
-      "X-RapidAPI-Key": "80acae05c0msha9cffe430735355p153ecdjsn43b3cf277656",
-      "X-RapidAPI-Host": "hapi-books.p.rapidapi.com"
-    });
-    // trycatg
     // var response = await http.get(url, headers: {
-    //   'X-RapidAPI-Key': 'e3e11eacd4mshbcee4b1b5b2452fp11803ajsne99b37360fe6',
-    //   'X-RapidAPI-Host': 'hapi-books.p.rapidapi.com'
+    //   "X-RapidAPI-Key": "80acae05c0msha9cffe430735355p153ecdjsn43b3cf277656",
+    //   "X-RapidAPI-Host": "hapi-books.p.rapidapi.com"
     // });
+    // trycath
+    var response = await http.get(url, headers: {
+      'X-RapidAPI-Key': 'e3e11eacd4mshbcee4b1b5b2452fp11803ajsne99b37360fe6',
+      'X-RapidAPI-Host': 'hapi-books.p.rapidapi.com'
+    });
     // sman17
     // var response = await http.get(url, headers: {
     //   'X-RapidAPI-Key': 'db46983a94mshd11512976392913p1adff9jsn0c090a2bfd80',
@@ -40,14 +40,16 @@ class BookController {
   Future<BookDetails> bookDetail(String id) async {
     var url = Uri.parse("${link}/book/${id}");
     // aid
-    var response = await http.get(url, headers: {
-      "X-RapidAPI-Key": "80acae05c0msha9cffe430735355p153ecdjsn43b3cf277656",
-      "X-RapidAPI-Host": "hapi-books.p.rapidapi.com"
-    });
     // var response = await http.get(url, headers: {
-    //   'X-RapidAPI-Key': 'e3e11eacd4mshbcee4b1b5b2452fp11803ajsne99b37360fe6',
-    //   'X-RapidAPI-Host': 'hapi-books.p.rapidapi.com'
+    //   "X-RapidAPI-Key": "80acae05c0msha9cffe430735355p153ecdjsn43b3cf277656",
+    //   "X-RapidAPI-Host": "hapi-books.p.rapidapi.com"
     // });
+    // trycatg
+    var response = await http.get(url, headers: {
+      'X-RapidAPI-Key': 'e3e11eacd4mshbcee4b1b5b2452fp11803ajsne99b37360fe6',
+      'X-RapidAPI-Host': 'hapi-books.p.rapidapi.com'
+    });
+    // sman17
     // var response = await http.get(url, headers: {
     //   'X-RapidAPI-Key': 'db46983a94mshd11512976392913p1adff9jsn0c090a2bfd80',
     //   'X-RapidAPI-Host': 'hapi-books.p.rapidapi.com'
