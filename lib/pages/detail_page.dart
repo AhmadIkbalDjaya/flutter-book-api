@@ -32,7 +32,7 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[400],
+        backgroundColor: Color.fromARGB(255, 255, 216, 61),
         title: GestureDetector(
           onTap: () {
             Navigator.pushReplacement(
@@ -42,7 +42,12 @@ class _DetailPageState extends State<DetailPage> {
               ),
             );
           },
-          child: Text("Book"),
+          child: Text(
+            "Book",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
         ),
         centerTitle: false,
         actions: [
@@ -55,18 +60,10 @@ class _DetailPageState extends State<DetailPage> {
                 ),
               );
             },
-            icon: Icon(Icons.favorite),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ReadLaterPage(),
-                ),
-              );
-            },
-            icon: Icon(Icons.remove_red_eye),
+            icon: Icon(
+              Icons.favorite,
+              color: Colors.black,
+            ),
           ),
         ],
         shape: RoundedRectangleBorder(
@@ -96,7 +93,7 @@ class _DetailPageState extends State<DetailPage> {
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey[400],
+                  color: Color.fromARGB(255, 255, 216, 61),
                 ),
                 child: ListView(
                   children: [

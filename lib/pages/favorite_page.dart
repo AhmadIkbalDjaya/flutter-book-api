@@ -37,7 +37,7 @@ class _FavoritePageState extends State<FavoritePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[400],
+        backgroundColor: Color.fromARGB(255, 255, 216, 61),
         title: GestureDetector(
           onTap: () {
             Navigator.pushReplacement(
@@ -47,7 +47,12 @@ class _FavoritePageState extends State<FavoritePage> {
               ),
             );
           },
-          child: Text("Book"),
+          child: Text(
+            "Book",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
         ),
         centerTitle: false,
         actions: [
@@ -65,17 +70,6 @@ class _FavoritePageState extends State<FavoritePage> {
               color: Colors.red,
             ),
           ),
-          IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ReadLaterPage(),
-                ),
-              );
-            },
-            icon: Icon(Icons.remove_red_eye),
-          ),
         ],
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -86,9 +80,6 @@ class _FavoritePageState extends State<FavoritePage> {
           ),
         ),
       ),
-      // body: ListView.builder(
-      //   itemBuilder: (context, index) => BookBox(),
-      // ),
       body: ListView.builder(
         itemCount: books.length,
         itemBuilder: (context, index) {
