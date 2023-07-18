@@ -84,7 +84,25 @@ class _FavoritePageState extends State<FavoritePage> {
         itemCount: books.length,
         itemBuilder: (context, index) {
           final book = books[index];
-          return BookBox(book: book);
+          return Stack(
+            children: [
+              BookBox(book: book),
+              Positioned(
+                bottom: 5,
+                right: 15,
+                child: IconButton(
+                  onPressed: () {
+                    DBHelper.deleteBook("${book.bookId}");
+                    fetchFavorite();
+                  },
+                  icon: Icon(
+                    Icons.delete,
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+            ],
+          );
         },
       ),
     );

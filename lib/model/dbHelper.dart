@@ -52,7 +52,7 @@ class DBHelper {
     });
   }
 
-  static Future<void> deleteBook(int bookId) async {
+  static Future<void> deleteBook(String bookId) async {
     final db = await database;
     await db.delete(
       'books',
